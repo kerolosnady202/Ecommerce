@@ -1,0 +1,21 @@
+<div  class="w-50 mx-auto py-5 my-5" >
+   <form [formGroup]="addressform" (ngSubmit)="handleSubmit(addressform)" >
+    <label for="details">Details:</label>
+    <input type="text" formControlName="details" id="details" class="form-control mb-2">
+    <div class="alert alert-danger p-2 mb-2" *ngIf="addressform.controls['details'].touched && addressform.controls['details'].errors " >
+     <p class="m-0" *ngIf="addressform.controls['details'].errors?.['required']">details is required</p>
+    </div>
+    <label for="phone">Phone:</label>
+    <input type="tel" formControlName="phone" id="phone" class="form-control mb-2 ">
+    <div class="alert alert-danger p-2 mb-2" *ngIf="addressform.controls['phone'].touched && addressform.controls['phone'].errors " >
+     <p class="m-0" *ngIf="addressform.controls['phone'].errors?.['required']">phone is required</p>
+     <p class="m-0" *ngIf="addressform.controls['phone'].errors?.['pattern'] ">phone must be number and must be egyption number beginning with 01  </p>
+    </div>
+    <label for="city">City:</label>
+    <input type="text" formControlName="city" id="city" class="form-control mb-2">
+    <div class="alert alert-danger p-2 mb-2" *ngIf="addressform.controls['city'].touched && addressform.controls['city'].errors " >
+     <p class="m-0" *ngIf="addressform.controls['city'].errors?.['required']">city is required</p>
+    </div>
+    <button class="btn bg-main text-white " type="submit">pay</button>
+   </form>
+</div>

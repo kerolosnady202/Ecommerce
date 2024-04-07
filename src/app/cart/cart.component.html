@@ -1,0 +1,36 @@
+
+<div class="bg-main-2  p-5 ">
+  <h3>Shop Cart</h3>
+  <h3 class=" p-4 text-white bg-success text-center" *ngIf="cartDetails?.products.length < 0"> your cart is empty</h3>
+  <h5 class="text-main pb-3 " *ngIf="cartDetails?.totalCartPrice > 0 && cartDetails?.products.length > 0" >Total Prices: {{cartDetails?.totalCartPrice | currency:'EGP'}}</h5>
+  <div class="row  bg-main-light p-4 my-4 shadow border-bottom py-3 align-items-center" *ngFor="let prod of cartDetails?.products">
+    <div class="col-md-1">
+      <img class="w-100 " [src]="prod.product.imageCover" alt="">
+    </div>
+    <div class="col-md-11 d-flex justify-content-between" >
+      <div>
+        <h6 class="h6 fw-bolder ">{{prod.product.title  | cut:6}}</h6>
+        <h6 class="text-main">Price : {{prod.price |currency :'EGP' }}</h6>
+        <button class="btn m-0 p-0 border-0" (click)="removeCartItem(prod.product._id)"><i class="fa-solid fa-trash-can text-main "></i> Remove </button>
+      </div>
+      <div>
+        <button class="btn border-main"  (click)="updataItemCount(prod.product._id , prod.count + 1 )" >+</button>
+        <span class="mx-2">{{prod.count}}</span>
+        <button class="btn border-main " [disabled]="prod.count == 0"  (click)="updataItemCount(prod.product._id , prod.count - 1 )">-</button>
+      </div>
+    </div>
+  </div>
+  <button class="btn bg-main text-white p-0 px-2 mt-2" *ngIf="cartDetails?.totalCartPrice > 0">
+    <a routerLink="/checkout">
+      <img src="../../assets/image/online apyment.svg" alt=""> online payment
+    </a>
+  </button>
+</div>
+
+
+
+
+<!-- <span>
+  <i class="fa fa-star rating-color" *ngFor="let item of getNumberArray(product.ratingsAverage)"></i>
+  <i class="fa fa-star-half rating-color" *ngIf=" product.ratingsAverage % 1 !=0 " ></i> {{product.ratingsAverage}}
+</span> -->

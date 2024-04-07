@@ -1,0 +1,28 @@
+
+<div class="w-75 mx-auto py-4 mb-5">
+  <h4>Login Now:</h4>
+  <div class="alert alert-danger" *ngIf="apiError">{{apiError}}</div>
+  <form [formGroup]="loginForm" (ngSubmit)="handleLogin(loginForm)">
+     <label for="email">Email:</label>
+     <input type="email" formControlName="email" id="email" class="form-control mb-2">
+     <div class="alert alert-danger p-2 mb-2" *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].errors " >
+      <p class="m-0" *ngIf="loginForm.controls['email'].errors?.['required']">email is required</p>
+      <p class="m-0" *ngIf="loginForm.controls['email'].errors?.['email']">email is invaild</p>
+     </div>
+
+     <label for="password">Password:</label>
+     <div class="position-relative">
+      <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" id="password" class="form-control mb-2">
+      <i class="fas position-absolute top-50 end-0 translate-middle-y me-2" [ngClass]="{'fa-eye':hidePassword , 'fa-eye-slash':!hidePassword} " (click)="togglePasswordVisibility()" ></i>
+     </div>
+     <div class="alert alert-danger p-2 mb-2" *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors " >
+      <p class="m-0" *ngIf="loginForm.controls['password'].errors?.['required']">password is required</p>
+      <p class="m-0" *ngIf="loginForm.controls['password'].errors?.['pattern'] ">password must beginnig as uppercase and then at less 5 lowercase or number </p>
+     </div>
+     <button [disabled]="loginForm.invalid" type="submit" class="btn border-0 text-white d-block ms-auto bg-main">
+       <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
+       <span *ngIf="!isLoading">Register</span>
+     </button>
+
+  </form>
+</div>

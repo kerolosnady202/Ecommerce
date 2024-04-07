@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-3 col-sm-4 "  *ngFor="let wish of wishlist ">
+    <div class="product p-2 position-relative " >
+
+      <span class="d-block " (click)="removeFromWish(wish._id)">
+        <i class="fas fa-heart-crack fa-2x wish text-main" ></i>
+      </span>
+      <a [routerLink]="['/productdetails/',wish._id]">
+        <img class="w-100 " [src]="wish.imageCover" alt="">
+        <span class="text-main fw-bold font-sm">{{wish.category.name}}</span>
+        <h3 class="h6 fw-bolder ">{{wish.title |cut:2 }}</h3>
+        <div class="d-flex align-items-center justify-content-between">
+          <span class="fw-bold font-sm text-main2 dir"  >{{wish.price |currency :'EGP' }} </span>
+          <span><i class="fa fa-star rating-color" ></i>{{wish.ratingsAverage}} </span>
+        </div>
+      </a>
+      <button class="w-100 bg-main text-white btn my-1" (click)="addToCart(wish._id)">+ Add</button>
+    </div>
+  </div>
+</div>

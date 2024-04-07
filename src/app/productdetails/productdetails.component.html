@@ -1,0 +1,32 @@
+<!-- <h3>{{productDetails.price}}</h3> -->
+<div class="row d-flex align-items-center p-5 ">
+  <div class="col-md-4">
+    <owl-carousel-o [options]="customOptions">
+
+      <ng-container *ngFor="let img of productDetails?.images">
+        <ng-template carouselSlide >
+          <img class="cursor-pointer" [src]="img" >
+        </ng-template>
+      </ng-container>
+
+    </owl-carousel-o>
+  </div>
+  <div class="col-md-8">
+    <button class="w-30 bg-main text-white btn my-1 d-block ms-auto mb-5">
+        <a routerLink="/home">  <i  class="fa-solid fa-arrow-left move"> </i>Back To Home</a>
+    </button>
+    <h3 class="fw-bolder">{{productDetails?.title}}</h3>
+    <p class="p-3">{{productDetails?.description }}</p>
+    <span class="d-block pb-2">{{productDetails?.category?.name}}</span>
+    <div class="d-flex align-items-center justify-content-between">
+      <span class="fw-bold font-sm text-main2">{{productDetails?.price}} EGP</span>
+      <!-- <span><i class="fa fa-star rating-color"></i> {{productDetails?.ratingsAverage}}</span> -->
+      <span>
+        <i class="fa fa-star rating-color" *ngFor="let item of getNumberArray(productDetails.ratingsAverage)"></i>
+        <i class="fa fa-star-half rating-color" *ngIf=" productDetails.ratingsAverage % 1 !=0 " ></i> {{productDetails.ratingsAverage}}
+      </span>
+    </div>
+    <button class="w-100 bg-main text-white btn my-1"  (click)="addToCart(productDetails?._id)">+ Add To Card</button>
+
+  </div>
+</div>

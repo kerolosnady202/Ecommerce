@@ -1,0 +1,18 @@
+button .move{
+  transition: 0.3s;
+  font-size: 18px;
+  margin-right: 5px;
+}
+button:hover .move{
+  animation: move 0.5s linear infinite;
+
+}
+@keyframes move
+{
+  0%,100%{
+    transform: translateX(0);
+  }
+  50%{
+    transform: translateX(-5px);
+  }
+}

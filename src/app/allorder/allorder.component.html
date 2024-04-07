@@ -1,0 +1,17 @@
+<div class=" bg-main-light p-5 shadow border-bottom  align-items-center" *ngFor="let order of allorder">
+  <h5 class="text-main border-bottom p-2 mb-2 bg-white ">Total Price of Order : {{order.totalOrderPrice |currency:'EGP'}}</h5>
+  <div class="row" *ngFor="let item of order.cartItems">
+    <div class="col-md-1">
+      <img class="w-100 " [src]="item.product.imageCover" alt="">
+    </div>
+    <div class="col-md-11">
+      <h6 class="h6 fw-bolder ">{{item.product.title  | cut:6}}</h6>
+      <h6 class="text-main">Price : {{item.price |currency :'EGP' }}</h6>
+      <span class="mx-2">count : {{item.count}}</span>
+    </div>
+  </div>
+ <!--  <p class="text-main font-sm  border-bottom p-2 mt-2 bg-white ">{{order.createdAt |date : 'short' }}</p> -->
+  <p class=" font-sm  border-bottom p-2 mt-2 text-main ">Date Of Order :{{order.createdAt |date : 'short' }}</p>
+
+
+</div>

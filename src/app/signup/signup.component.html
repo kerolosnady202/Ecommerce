@@ -1,0 +1,59 @@
+<div class="row d-flex align-items-center">
+  <div class="col-md-5">
+    <img src="../../assets/image/singup.jpg" alt="" class="w-100 ">
+  </div>
+  <div class="col-md-7">
+    <div class="w-90 mx-auto py-4">
+      <h4>Register Now:</h4>
+      <div class="alert alert-danger" *ngIf="apiError">{{apiError}}</div>
+      <form (ngSubmit)="handleRegister(registerForm)" [formGroup]="registerForm">
+         <label for="name">Name:</label>
+         <input type="text" formControlName="name" id="name" class="form-control mb-2">
+         <div class="alert alert-danger p-2 mb-2" *ngIf="registerForm.controls['name'].touched && registerForm.controls['name'].errors " >
+          <p class="m-0" *ngIf="registerForm.controls['name'].errors?.['required']">Name is required</p>
+          <p class="m-0" *ngIf="registerForm.controls['name'].errors?.['minlength']">Name minlength is 3</p>
+          <p class="m-0" *ngIf="registerForm.controls['name'].errors?.['maxlength']">Name maxlength is 10</p>
+         </div>
+
+         <label for="email">Email:</label>
+         <input type="email" formControlName="email" id="email" class="form-control mb-2">
+         <div class="alert alert-danger p-2 mb-2" *ngIf="registerForm.controls['email'].touched && registerForm.controls['email'].errors " >
+          <p class="m-0" *ngIf="registerForm.controls['email'].errors?.['required']">email is required</p>
+          <p class="m-0" *ngIf="registerForm.controls['email'].errors?.['email'] || registerForm.controls['email'].errors?.['pattern'] ">email is invaild</p>
+         </div>
+
+         <label for="password">Password:</label>
+         <div class="position-relative">
+          <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" id="password" class="form-control mb-2  ">
+          <i class="fas position-absolute top-50 end-0 translate-middle-y me-2" [ngClass]="{'fa-eye': hidePassword, 'fa-eye-slash': !hidePassword}" (click)="togglePasswordVisibility()"></i>
+         </div>
+         <div class="alert alert-danger p-2 mb-2" *ngIf="registerForm.controls['password'].touched && registerForm.controls['password'].errors " >
+          <p class="m-0" *ngIf="registerForm.controls['password'].errors?.['required']">password is required</p>
+          <p class="m-0" *ngIf="registerForm.controls['password'].errors?.['pattern'] ">password must beginnig as uppercase and then at less 5 lowercase or number </p>
+         </div>
+
+         <label for="rePassword">Repassword:</label>
+         <div class="position-relative">
+          <input [type]="hiderePassword ? 'password' : 'text'" formControlName="rePassword" id="rePassword" class="form-control mb-2 position-relative">
+          <i class="fas position-absolute top-50 end-0 translate-middle-y me-2" [ngClass]="{'fa-eye': hiderePassword, 'fa-eye-slash': !hiderePassword}" (click)="togglerePasswordVisibility()"></i>
+         </div>
+         <div class="alert alert-danger p-2 mb-2" *ngIf="registerForm.controls['rePassword'].touched && registerForm.controls['rePassword'].errors " >
+          <p class="m-0" *ngIf="registerForm.controls['rePassword'].errors?.['required']">rePassword is required</p>
+          <p class="m-0" *ngIf="registerForm.controls['rePassword'].errors?.['pattern'] ">rePassword must beginning as uppercase and then at less 5 lowercase or number </p>
+          <p class="m-0" *ngIf="registerForm.controls['rePassword'].errors?.['confirmPass'] ">rePassword must be confirm with the pass </p>
+         </div>
+
+         <label for="phone">Phone:</label>
+         <input type="tel" formControlName="phone" id="phone" class="form-control mb-2 ">
+         <div class="alert alert-danger p-2 mb-2" *ngIf="registerForm.controls['phone'].touched && registerForm.controls['phone'].errors " >
+          <p class="m-0" *ngIf="registerForm.controls['phone'].errors?.['required']">phone is required</p>
+          <p class="m-0" *ngIf="registerForm.controls['phone'].errors?.['pattern'] ">phone must be number and must be egyption number beginning with 01  </p>
+         </div>
+         <button [disabled]="registerForm.invalid" type="submit" class="btn border-0 text-white d-block ms-auto bg-main">
+           <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
+           <span *ngIf="!isLoading">Register</span>
+         </button>
+      </form>
+    </div>
+  </div>
+</div>
