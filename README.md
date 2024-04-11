@@ -1,6 +1,6 @@
 # Ecommerce
 ## https://kerolosnady202.github.io/Ecommerce/ .
-##🚀 Excited to share my latest project, a responsive E-commerce website built using HTML, CSS, TypeScript, Angular, ngx-pagination, Font Awesome, ngx-toastr, ngx-spinner, and Stripe! 🎉
+## Excited to share my latest project, a responsive E-commerce website built using HTML, CSS, TypeScript, Angular, ngx-pagination, Font Awesome, ngx-toastr, ngx-spinner, and Stripe! 🎉
 ##🔍 Description: This project represents the culmination of advanced front-end technologies, creating a seamless online shopping experience. Angular's robust framework, combined with TypeScript's static typing, ensured a scalable and maintainable codebase. Bootstrap's grid system facilitated responsive design, and ngx-pagination enhanced the browsing experience by efficiently managing product listings.
 ##🏆 Key Features:
  * Login and Registration: Secure authentication using JWT decode library
